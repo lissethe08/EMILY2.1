@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Algunas cosas bonitas tienen tu nombre 💛</title>
+<title>Para ti, Emily 💛</title>
 
 <style>
 * {
@@ -21,7 +21,7 @@ body {
     justify-content: center;
     align-items: center;
     overflow-x: hidden;
-    padding: 40px 15px;
+    padding: 30px 15px;
 }
 
 .container {
@@ -32,13 +32,13 @@ body {
 
 h1 {
     color: #bd8c36;
-    font-size: clamp(25px, 5vw, 36px);
-    margin-bottom: 20px;
+    font-size: clamp(28px, 5vw, 36px);
+    margin-bottom: 15px;
 }
 
 .subtitle {
     color: #987847;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     font-size: 15px;
 }
 
@@ -48,7 +48,6 @@ h1 {
     justify-content: center;
     align-items: center;
     position: relative;
-    margin-top: 20px;
 }
 
 .envelope {
@@ -59,7 +58,6 @@ h1 {
     cursor: pointer;
     box-shadow: 0 15px 30px #9d713344;
     border-radius: 3px;
-    z-index: 2;
 }
 
 .back {
@@ -84,7 +82,6 @@ h1 {
     opacity: 0;
     transform: translateY(0);
     transition: transform 1s ease, opacity 0.6s ease;
-    scrollbar-width: thin;
 }
 
 .letter h2 {
@@ -93,18 +90,18 @@ h1 {
     margin-bottom: 18px;
 }
 
-.letter .flower {
-    font-size: 35px;
-    margin-bottom: 15px;
-}
-
 .letter p {
     font-size: 14px;
     line-height: 1.8;
     margin-bottom: 14px;
 }
 
-.letter .signature {
+.flower {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.signature {
     color: #bd8c36;
     font-size: 18px;
     margin-top: 20px;
@@ -126,7 +123,6 @@ h1 {
     border-left: 150px solid #efa35e;
     border-right: 150px solid #efa35e;
     border-top: 100px solid transparent;
-    border-bottom: 0;
 }
 
 .front::after {
@@ -143,8 +139,6 @@ h1 {
     position: absolute;
     top: 0;
     left: 0;
-    width: 0;
-    height: 0;
     border-left: 150px solid transparent;
     border-right: 150px solid transparent;
     border-top: 110px solid #d98d4d;
@@ -179,7 +173,6 @@ h1 {
 
 .envelope.open .front {
     opacity: 0;
-    transition: opacity 0.4s;
 }
 
 .instruction {
@@ -208,20 +201,14 @@ button:hover {
 .decorations {
     font-size: 25px;
     margin-top: 25px;
-    animation: float 3s infinite ease-in-out;
 }
 
 .floating {
     position: fixed;
     pointer-events: none;
-    animation: fall 8s linear infinite;
+    animation: fall 8s linear forwards;
     opacity: 0.8;
-}
-
-@keyframes float {
-    50% {
-        transform: translateY(-10px);
-    }
+    z-index: 10;
 }
 
 @keyframes fall {
@@ -237,10 +224,6 @@ button:hover {
     .envelope {
         transform: scale(0.9);
     }
-
-    .envelope.open .letter {
-        transform: translateY(-190px);
-    }
 }
 </style>
 </head>
@@ -249,10 +232,10 @@ button:hover {
 
 <div class="container">
 
-    <h1>Algunas cosas bonitas tienen tu nombre 💛</h1>
+    <h1>Para ti, Emily 💛</h1>
 
     <p class="subtitle">
-        Hay detalles que no necesitan una ocasión especial.
+        Hay cosas que simplemente merecen ser escritas.
     </p>
 
     <div class="envelope-wrapper">
@@ -321,15 +304,14 @@ button:hover {
             <div class="heart">💛</div>
 
         </div>
-
     </div>
 
     <p class="instruction" id="instruction">
-        Toca el sobre para descubrir algo bonito 💌
+        Toca el sobre para abrirlo 💌
     </p>
 
     <button onclick="toggleLetter()" id="openButton">
-        Abrir mi carta 💛
+        Abrir carta 💛
     </button>
 
     <div class="decorations">
@@ -347,28 +329,31 @@ function toggleLetter() {
     envelope.classList.toggle("open");
 
     if (envelope.classList.contains("open")) {
-        instruction.textContent = "Un pequeño detalle hecho para ti 💛";
+        instruction.textContent = "Escribí esto pensando en ti 💛";
         button.textContent = "Cerrar carta";
     } else {
-        instruction.textContent = "Toca el sobre para descubrir algo bonito 💌";
-        button.textContent = "Abrir mi carta 💛";
+        instruction.textContent = "Toca el sobre para abrirlo 💌";
+        button.textContent = "Abrir carta 💛";
     }
 }
 
 envelope.addEventListener("click", toggleLetter);
 
-// Flores y corazones flotantes
 const symbols = ["🌼", "💛", "✨", "🌻"];
 
 function createDecoration() {
     const element = document.createElement("div");
     element.className = "floating";
+
     element.textContent =
         symbols[Math.floor(Math.random() * symbols.length)];
 
     element.style.left = Math.random() * 100 + "vw";
-    element.style.fontSize = (15 + Math.random() * 15) + "px";
-    element.style.animationDuration = (5 + Math.random() * 5) + "s";
+    element.style.fontSize =
+        (15 + Math.random() * 15) + "px";
+
+    element.style.animationDuration =
+        (5 + Math.random() * 5) + "s";
 
     document.body.appendChild(element);
 
