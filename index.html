@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para Emily 💛</title>
+<title>Algunas cosas bonitas tienen tu nombre 💛</title>
 
 <style>
 * {
@@ -15,24 +15,40 @@
 
 body {
     min-height: 100vh;
+    background: linear-gradient(135deg, #fff9e9, #ffedbd);
+    font-family: Georgia, serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #fff8e7, #ffe9ad);
-    font-family: Georgia, serif;
     overflow-x: hidden;
+    padding: 40px 15px;
 }
 
 .container {
+    width: 100%;
+    max-width: 650px;
     text-align: center;
-    width: 90%;
-    max-width: 500px;
 }
 
 h1 {
-    color: #b68a32;
-    margin-bottom: 35px;
-    font-size: 30px;
+    color: #bd8c36;
+    font-size: clamp(25px, 5vw, 36px);
+    margin-bottom: 20px;
+}
+
+.subtitle {
+    color: #987847;
+    margin-bottom: 30px;
+    font-size: 15px;
+}
+
+.envelope-wrapper {
+    height: 420px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-top: 20px;
 }
 
 .envelope {
@@ -40,118 +56,192 @@ h1 {
     width: 300px;
     height: 190px;
     background: #e9a05c;
-    margin: 100px auto 35px;
     cursor: pointer;
-    border-radius: 4px;
-    box-shadow: 0 12px 25px #b68a3240;
+    box-shadow: 0 15px 30px #9d713344;
+    border-radius: 3px;
+    z-index: 2;
 }
 
-.envelope::before {
-    content: "";
+.back {
     position: absolute;
-    top: 0;
-    left: 0;
-    border-left: 150px solid transparent;
-    border-right: 150px solid transparent;
-    border-top: 110px solid #d88a4b;
-    transform-origin: top;
-    transition: transform 0.8s;
-    z-index: 5;
-}
-
-.envelope.open::before {
-    transform: rotateX(180deg);
-}
-
-.envelope::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    border-left: 150px solid #e9a05c;
-    border-right: 150px solid #e9a05c;
-    border-bottom: 100px solid #c97943;
-    z-index: 3;
+    inset: 0;
+    background: #e8a15e;
+    z-index: 0;
 }
 
 .letter {
     position: absolute;
-    background: #fffdf6;
-    width: 260px;
-    height: 160px;
-    left: 20px;
+    width: 280px;
+    height: 350px;
+    left: 10px;
     bottom: 10px;
-    padding: 20px;
-    transition: 1s;
-    z-index: 2;
-    border-radius: 5px;
-}
-
-.envelope.open .letter {
-    transform: translateY(-180px);
-    height: 340px;
-    width: 290px;
-    left: 5px;
+    background: #fffdf6;
+    border-radius: 7px;
+    padding: 24px 20px;
+    color: #755b38;
+    z-index: 1;
     overflow-y: auto;
+    opacity: 0;
+    transform: translateY(0);
+    transition: transform 1s ease, opacity 0.6s ease;
+    scrollbar-width: thin;
 }
 
 .letter h2 {
-    color: #bd8b32;
-    font-size: 21px;
+    color: #b88a37;
+    font-size: 23px;
+    margin-bottom: 18px;
+}
+
+.letter .flower {
+    font-size: 35px;
     margin-bottom: 15px;
 }
 
 .letter p {
-    color: #765d3c;
     font-size: 14px;
-    line-height: 1.7;
+    line-height: 1.8;
+    margin-bottom: 14px;
+}
+
+.letter .signature {
+    color: #bd8c36;
+    font-size: 18px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.front {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.front::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-left: 150px solid #efa35e;
+    border-right: 150px solid #efa35e;
+    border-top: 100px solid transparent;
+    border-bottom: 0;
+}
+
+.front::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-bottom: 100px solid #ca8048;
+}
+
+.flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 110px solid #d98d4d;
+    transform-origin: top;
+    transition: transform 0.8s ease;
+    z-index: 5;
 }
 
 .heart {
     position: absolute;
-    top: -25px;
+    top: -27px;
     left: 125px;
     font-size: 45px;
     z-index: 6;
-    transition: 0.5s;
+    transition: opacity 0.5s;
+}
+
+.envelope.open .flap {
+    transform: rotateX(180deg);
+    z-index: 0;
 }
 
 .envelope.open .heart {
     opacity: 0;
 }
 
+.envelope.open .letter {
+    opacity: 1;
+    transform: translateY(-190px);
+    z-index: 4;
+}
+
+.envelope.open .front {
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
 .instruction {
-    color: #98743c;
-    font-size: 14px;
+    color: #9a7845;
+    font-size: 15px;
     margin-top: 15px;
 }
 
 button {
-    background: #d9a441;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 25px;
+    background: #d5a344;
     color: white;
+    border: none;
+    padding: 13px 28px;
+    border-radius: 30px;
     font-size: 15px;
+    margin-top: 20px;
     cursor: pointer;
-    margin-top: 15px;
     transition: 0.3s;
 }
 
 button:hover {
-    background: #bd872d;
+    background: #b98932;
     transform: scale(1.05);
 }
 
-.flowers {
-    font-size: 30px;
-    margin-top: 20px;
+.decorations {
+    font-size: 25px;
+    margin-top: 25px;
+    animation: float 3s infinite ease-in-out;
 }
 
-.hidden {
-    display: none;
+.floating {
+    position: fixed;
+    pointer-events: none;
+    animation: fall 8s linear infinite;
+    opacity: 0.8;
 }
 
+@keyframes float {
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes fall {
+    from {
+        transform: translateY(-10vh) rotate(0deg);
+    }
+    to {
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
+
+@media(max-width: 400px) {
+    .envelope {
+        transform: scale(0.9);
+    }
+
+    .envelope.open .letter {
+        transform: translateY(-190px);
+    }
+}
 </style>
 </head>
 
@@ -159,78 +249,133 @@ button:hover {
 
 <div class="container">
 
-    <h1>Una pequeña sorpresa para Emily 💛</h1>
+    <h1>Algunas cosas bonitas tienen tu nombre 💛</h1>
 
-    <div class="envelope" id="envelope" onclick="openLetter()">
+    <p class="subtitle">
+        Hay detalles que no necesitan una ocasión especial.
+    </p>
 
-        <div class="heart">💛</div>
+    <div class="envelope-wrapper">
 
-        <div class="letter">
+        <div class="envelope" id="envelope">
 
-            <h2>Para Emily 🌻</h2>
+            <div class="back"></div>
 
-            <p>
-            Hay personas que llegan sin hacer ruido
-            y terminan convirtiéndose en algo muy bonito.
-            </p>
+            <div class="letter">
 
-            <p>
-            Y tú tienes esa forma tan especial
-            de hacer que hasta los días más simples
-            tengan un poquito más de color.
-            </p>
+                <div class="flower">🌻</div>
 
-            <p>
-            Si fueras una flor, serías un girasol,
-            porque tienes algo que ilumina
-            incluso los momentos más pequeños.
-            </p>
+                <h2>Emily 💛</h2>
 
-            <p>
-            No sé cómo explicarlo con exactitud,
-            pero me encanta la manera en que eres,
-            cómo me tratas y lo especial que
-            haces que se sientan ciertos momentos.
-            </p>
+                <p>
+                    Si fueras una flor, serías un girasol,
+                    no solamente por su belleza,
+                    sino por esa forma tan especial
+                    de llenar de luz cualquier lugar.
+                </p>
 
-            <p>
-            Quiero que nunca olvides que hay algo
-            muy bonito en ti y que me alegra
-            haberte encontrado.
-            </p>
+                <p>
+                    Hay personas que llegan a nuestra vida
+                    y hacen que las cosas más sencillas
+                    se conviertan en recuerdos bonitos.
+                    Tú tienes esa magia.
+                </p>
 
-            <h2>Con cariño, Lis. 💛</h2>
+                <p>
+                    Me gusta tu forma de ser,
+                    tu honestidad, tu manera de tratarme
+                    y esos pequeños detalles que,
+                    aunque parezcan simples,
+                    significan mucho para mí.
+                </p>
 
-            <div class="flowers">🌻 🌼 🌻</div>
+                <p>
+                    No necesitas ser perfecta para ser
+                    alguien extraordinaria.
+                    Tienes algo que te hace diferente
+                    y eso es precisamente lo bonito de ti.
+                </p>
+
+                <p>
+                    Ojalá nunca dejes de florecer,
+                    de ser tú misma y de encontrar
+                    motivos para sonreír.
+                </p>
+
+                <p>
+                    Y si algún día te regalan flores,
+                    recuerda que hay personas
+                    que también pueden verte como una.
+                </p>
+
+                <div class="flower">🌼 🌻 🌼</div>
+
+                <p class="signature">
+                    Con cariño, Lis. 💛
+                </p>
+
+            </div>
+
+            <div class="front"></div>
+            <div class="flap"></div>
+            <div class="heart">💛</div>
 
         </div>
+
     </div>
 
     <p class="instruction" id="instruction">
-        Toca el sobre para descubrir tu sorpresa 💌
+        Toca el sobre para descubrir algo bonito 💌
     </p>
 
-    <button onclick="openLetter()">
+    <button onclick="toggleLetter()" id="openButton">
         Abrir mi carta 💛
     </button>
+
+    <div class="decorations">
+        🌻 ✨ 🌼 ✨ 🌻
+    </div>
 
 </div>
 
 <script>
+const envelope = document.getElementById("envelope");
+const instruction = document.getElementById("instruction");
+const button = document.getElementById("openButton");
 
-function openLetter() {
-    const envelope = document.getElementById("envelope");
-    const instruction = document.getElementById("instruction");
-
+function toggleLetter() {
     envelope.classList.toggle("open");
 
     if (envelope.classList.contains("open")) {
-        instruction.textContent = "Una carta escrita especialmente para ti 💛";
+        instruction.textContent = "Un pequeño detalle hecho para ti 💛";
+        button.textContent = "Cerrar carta";
     } else {
-        instruction.textContent = "Toca el sobre para descubrir tu sorpresa 💌";
+        instruction.textContent = "Toca el sobre para descubrir algo bonito 💌";
+        button.textContent = "Abrir mi carta 💛";
     }
 }
 
+envelope.addEventListener("click", toggleLetter);
+
+// Flores y corazones flotantes
+const symbols = ["🌼", "💛", "✨", "🌻"];
+
+function createDecoration() {
+    const element = document.createElement("div");
+    element.className = "floating";
+    element.textContent =
+        symbols[Math.floor(Math.random() * symbols.length)];
+
+    element.style.left = Math.random() * 100 + "vw";
+    element.style.fontSize = (15 + Math.random() * 15) + "px";
+    element.style.animationDuration = (5 + Math.random() * 5) + "s";
+
+    document.body.appendChild(element);
+
+    setTimeout(() => element.remove(), 10000);
+}
+
+setInterval(createDecoration, 1200);
 </script>
 
 </body>
