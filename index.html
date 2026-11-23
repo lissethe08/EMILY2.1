@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Emily 💛</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #fff8e7, #ffe9ad);
+    font-family: Georgia, serif;
+    overflow-x: hidden;
+}
+
+.container {
+    text-align: center;
+    width: 90%;
+    max-width: 500px;
+}
+
+h1 {
+    color: #b68a32;
+    margin-bottom: 35px;
+    font-size: 30px;
+}
+
+.envelope {
+    position: relative;
+    width: 300px;
+    height: 190px;
+    background: #e9a05c;
+    margin: 100px auto 35px;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 0 12px 25px #b68a3240;
+}
+
+.envelope::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 110px solid #d88a4b;
+    transform-origin: top;
+    transition: transform 0.8s;
+    z-index: 5;
+}
+
+.envelope.open::before {
+    transform: rotateX(180deg);
+}
+
+.envelope::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-left: 150px solid #e9a05c;
+    border-right: 150px solid #e9a05c;
+    border-bottom: 100px solid #c97943;
+    z-index: 3;
+}
+
+.letter {
+    position: absolute;
+    background: #fffdf6;
+    width: 260px;
+    height: 160px;
+    left: 20px;
+    bottom: 10px;
+    padding: 20px;
+    transition: 1s;
+    z-index: 2;
+    border-radius: 5px;
+}
+
+.envelope.open .letter {
+    transform: translateY(-180px);
+    height: 340px;
+    width: 290px;
+    left: 5px;
+    overflow-y: auto;
+}
+
+.letter h2 {
+    color: #bd8b32;
+    font-size: 21px;
+    margin-bottom: 15px;
+}
+
+.letter p {
+    color: #765d3c;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.heart {
+    position: absolute;
+    top: -25px;
+    left: 125px;
+    font-size: 45px;
+    z-index: 6;
+    transition: 0.5s;
+}
+
+.envelope.open .heart {
+    opacity: 0;
+}
+
+.instruction {
+    color: #98743c;
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+button {
+    background: #d9a441;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #bd872d;
+    transform: scale(1.05);
+}
+
+.flowers {
+    font-size: 30px;
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Una pequeña sorpresa para Emily 💛</h1>
+
+    <div class="envelope" id="envelope" onclick="openLetter()">
+
+        <div class="heart">💛</div>
+
+        <div class="letter">
+
+            <h2>Para Emily 🌻</h2>
+
+            <p>
+            Hay personas que llegan sin hacer ruido
+            y terminan convirtiéndose en algo muy bonito.
+            </p>
+
+            <p>
+            Y tú tienes esa forma tan especial
+            de hacer que hasta los días más simples
+            tengan un poquito más de color.
+            </p>
+
+            <p>
+            Si fueras una flor, serías un girasol,
+            porque tienes algo que ilumina
+            incluso los momentos más pequeños.
+            </p>
+
+            <p>
+            No sé cómo explicarlo con exactitud,
+            pero me encanta la manera en que eres,
+            cómo me tratas y lo especial que
+            haces que se sientan ciertos momentos.
+            </p>
+
+            <p>
+            Quiero que nunca olvides que hay algo
+            muy bonito en ti y que me alegra
+            haberte encontrado.
+            </p>
+
+            <h2>Con cariño, Lis. 💛</h2>
+
+            <div class="flowers">🌻 🌼 🌻</div>
+
+        </div>
+    </div>
+
+    <p class="instruction" id="instruction">
+        Toca el sobre para descubrir tu sorpresa 💌
+    </p>
+
+    <button onclick="openLetter()">
+        Abrir mi carta 💛
+    </button>
+
+</div>
+
+<script>
+
+function openLetter() {
+    const envelope = document.getElementById("envelope");
+    const instruction = document.getElementById("instruction");
+
+    envelope.classList.toggle("open");
+
+    if (envelope.classList.contains("open")) {
+        instruction.textContent = "Una carta escrita especialmente para ti 💛";
+    } else {
+        instruction.textContent = "Toca el sobre para descubrir tu sorpresa 💌";
+    }
+}
+
+</script>
+
+</body>
+</html>
